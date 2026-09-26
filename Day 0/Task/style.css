@@ -1,0 +1,80 @@
+/* universal selecter */
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    margin: 0; 
+    padding: 0;
+    background-color: rgb(237, 235, 221);
+    color: #283526;
+}
+header{
+    width: 90%;
+    height: 40px;
+    display: flex;
+    align-self: auto;
+    margin: 20px auto;
+    justify-content: space-between;
+    font-size: 25px;
+}
+a{
+    text-decoration: none;
+    color: #283526;
+    margin: 10px;
+}
+button{
+    background-color: #283526;
+    color: white;
+    padding: 5px 10px;
+    border: #283526a6 1px solid;
+    border-radius: 4px;
+}
+
+.SubHeader{
+    width: 90%;
+    height: 150px;
+    display: flex;
+    margin: 20px auto;
+
+}
+.SubHeader > .start{
+    margin: 20px 30px 10px 10px;
+    font-size: 60px;
+}
+.SubHeader > .mid{
+    width: 30%;
+    height: 100%;
+    /* background-color: gray; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    font-size: 25px;
+}
+.SubHeader > .end{
+     width: 30%;
+    height: 100%;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+} 
+.image{
+    width: 90%;
+    height: 400px;
+    margin: 30px auto;
+    background-image: url(image.png);
+    background-size: cover;
+    border-radius: 25px;
+    
+}
+
+
+
+
+

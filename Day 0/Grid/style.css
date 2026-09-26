@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+margin: 0;
+padding: 0;
+background-color: #444;
+}
+.body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main{
+    width: 800px;
+    height: 600px;
+    border: 1px solid black;
+    background-color: black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 15px;
+
+}
+div{
+    border-radius: 10px;
+    
+}
+.color_1{
+    /* grid-row: span 2; */
+    /* grid-area: one ; */
+    background-color: lightblue;
+}
+.color_2{
+    /* grid-area: two ; */
+    background-color: lightgreen;
+}
+.color_3{
+    /* grid-area: three ; */
+    background-color: lightpink;
+}
+.color_4{
+    /* grid-area: four ; */
+    background-color: lightyellow;
+}
+.color_5{
+    /* grid-area: five ; */
+    background-color: lightgray;
+}
+.color_6{
+    /* grid-area: six; */
+    background-color: lightcoral;
+}
+.color_7{
+    /* grid-area: seven; */
+    background-color: lightcyan;
+}
+.color_8{
+    /* grid-area: eight; */
+    background-color: rgb(86, 100, 174);
+}
