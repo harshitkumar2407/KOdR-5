@@ -1,0 +1,29 @@
+
+
+html, body{
+margin: 0;
+padding: 0;
+background-color: #222;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.bulb{
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 50%;
+}
+.btn{
+    margin-top: 50px;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+
