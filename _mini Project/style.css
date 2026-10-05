@@ -1,0 +1,37 @@
+*{
+    margin: 0;    
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html{
+    width: 100%;
+    height: 100%;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.canvas {
+  width: 800px;
+  height: 500px;
+  border: 2px solid #222;
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.shape {
+  position: absolute;
+  border: 2px solid black;
+  background: transparent;
+  pointer-events: none;
+}
+.circle {
+  position: absolute;
+  border: 2px solid black;
+  background: transparent;
+  pointer-events: none;
+  border-radius: 50%;
+}

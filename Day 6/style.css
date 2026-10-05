@@ -11,6 +11,7 @@ html,body {
     display: flex;
     align-items: center;
     justify-content: center;
+
     cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' style='font-size:24px;'><text y='50%'>🔨</text></svg>"), auto !important;
 
         -webkit-user-select: none; /* Safari */
@@ -18,6 +19,9 @@ html,body {
         -ms-user-select: none;     /* Internet Explorer/Edge */
         user-select: none;         /* Standard syntax */
 }
+
+
+
 
 main{
     width:500px;
@@ -30,7 +34,7 @@ main{
     padding: 5px 20px;
     justify-content: space-between;
     align-items: center;
-    font-size: 35px;
+    font-size: 23px;
 
 }
 .box{
