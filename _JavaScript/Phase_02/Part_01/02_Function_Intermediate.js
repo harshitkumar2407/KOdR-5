@@ -1,6 +1,11 @@
 // 1
+function multiplication(params) {
+    console.log("multiplication");
+    
+}
 
 // 2
+
 
 // 3
 function Sum_all(...num) {
@@ -55,5 +60,9 @@ function father() {
 }
 
 // 9
+function subtraction(a,b) {
+    return a+b
+}
 
 // 10
+
