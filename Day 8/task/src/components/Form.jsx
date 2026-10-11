@@ -1,8 +1,9 @@
 import React,{useState} from 'react'
 import { nanoid } from "nanoid";
 
-const Form = ({setUserData,setToggle}) => {
-    const [FormData, setFormData] = useState({
+const Form = ({setUserData,setToggle,setIsEdited,isEdited}) => {
+
+    const [FormData, setFormData] = useState( isEdited || {
         name:"" ,email:"", password:"",imageURL:"",id:""
     })
     
@@ -18,12 +19,28 @@ const Form = ({setUserData,setToggle}) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        setUserData((prev)=>[...prev,{...FormData,id:nanoid()}])
-        
-        setFormData({
-            name:"",email:"",password:"",imageURL:""
-        })
+
+        // setUserData((prev)=>[...prev,{...FormData,id:nanoid()}])
+        // setFormData({
+        //     name:"",email:"",password:"",imageURL:""
+        // })
+        if (isEdited) {
+        setUserData(prev =>
+            prev.map(user =>
+                user.id === isEdited.id
+                    ? { ...FormData, id: isEdited.id }
+                    : user
+            )
+        );
+    } else {
+        setUserData(prev => [
+            ...prev,
+            { ...FormData, id: nanoid() }
+        ]);
+    }
+
         setToggle((prev) => !prev)
+        setIsEdited(null)        
 
     }
   return (

@@ -10,6 +10,7 @@ import UserCards from './components/UserCards'
 const App = () => {
   const [userData, setUserData] = useState([])
   const [toggle, setToggle] = useState(true)
+  const [isEdited, setIsEdited] = useState(null)
   console.log(userData);
   
   return (
@@ -17,8 +18,19 @@ const App = () => {
       
         <Header setToggle={setToggle}/>
         {toggle ? 
-            <UserCards  userData={userData} setUserData={setUserData}/> : 
-            <Form setUserData={setUserData} setToggle={setToggle} userData={userData}/> }
+            <UserCards  
+				userData={userData} 
+				setUserData={setUserData} 
+				setIsEdited ={setIsEdited}
+				setToggle ={setToggle}
+				/> : 
+            <Form 
+				setUserData={setUserData} 
+				setToggle={setToggle} 
+				userData={userData} 
+				isEdited={isEdited}
+				setIsEdited ={setIsEdited} 
+				/> }
     </div>)
 }
 
