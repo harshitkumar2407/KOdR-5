@@ -1,15 +1,12 @@
-import { createContext } from "react";
-import { useState } from "react";
+import { createContext, useState } from "react";
 
+export const UserInfo = createContext();
 
-
-
-export let MyStore = createContext()
-
-export const ContextProvider = ({children}) => {
-    let data = "true"
-    // return <MyStore.Provider value={data}>
-    return <MyStore.Provider value={{data}}>
+export const ContextProvider = ({ children }) => {
+    const data = "true";
+    const [user, setUser] = useState({name:"",email:"",password:""})
+    const [toggle, setToggle] = useState(true)
+    return <UserInfo.Provider value={{ data,user,setUser,toggle, setToggle }}>
         {children}
-    </MyStore.Provider>
-}
+        </UserInfo.Provider>;
+};

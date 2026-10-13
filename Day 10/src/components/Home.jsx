@@ -1,18 +1,17 @@
 import React from 'react'
 import { useContext } from 'react'
-import { MyStore } from '../context/MyContext'
-import About from './About'
-// import { useContext } from 'react'
-// import { MyStore } from '../context/MyContext'
+import { Ui_Theme } from '../context/ThemeContext'
+import Header from './Header'
+import { UserInfo } from '../context/MyContext'
 
 const Home = () => {
-    let {data}=useContext(MyStore)
-
-
-    // let {data} =useContext(MyStore)
+    let {theme,setTheme,} = useContext(Ui_Theme)
+    const {toggle, setToggle} = useContext(UserInfo)
   return (
-    <div>Home {data}
-    <About/>
+    <div>
+        <Header/>
+        {/* {toggle ? } */}
+
     </div>
   )
 }
