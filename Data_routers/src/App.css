@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@import "toastr";
+
+
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { background: #f4f6f9; color: #333; line-height: 1.5; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+.navbar { display: flex; justify-content: space-between; align-items: center; background: #2c3e50; color: white; padding: 15px 30px; }
+.navbar-nav { display: flex; align-items: center; gap: 15px; }
+.user-welcome { font-size: 14px; }
+.footer { text-align: center; padding: 20px; color: #7f8c8d; font-size: 14px; margin-top: 40px; }
+
+.btn { padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; }
+.btn-sm { padding: 4px 8px; font-size: 13px; }
+.btn-primary { background: #3498db; color: white; }
+.btn-secondary { background: #95a5a6; color: white; }
+.btn-danger { background: #e74c3c; color: white; }
+.btn-outline { background: transparent; border: 1px solid #3498db; color: #3498db; }
+.btn-outline:hover { background: #3498db; color: white; }
+.btn-block { width: 100%; padding: 10px; text-align: center; }
+
+.login-container { display: flex; justify-content: center; align-items: center; min-height: 60vh; }
+.login-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 350px; }
+.login-title { margin-bottom: 20px; text-align: center; }
+.form-group { margin-bottom: 15px; }
+.form-label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+.form-input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; outline: none; }
+
+.orders-card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.orders-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+.filter-container { display: flex; align-items: center; gap: 10px; }
+.filter-buttons { display: flex; gap: 5px; }
+.btn-filter { background: #eee; color: #333; padding: 5px 10px; border-radius: 4px; border: 1px solid #ddd; cursor: pointer; }
+.btn-filter.active { background: #3498db; color: white; border-color: #3498db; }
+
+.table-wrapper { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; text-align: left; margin-top: 10px; }
+.table th, .table td { padding: 12px 15px; border-bottom: 1px solid #ddd; }
+.table th { background: #f8f9fa; color: #555; }
+.action-cell { display: flex; gap: 10px; align-items: center; }
+.select-wrapper { position: relative; }
+.select-status { padding: 5px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer; }
+
+.badge { padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; text-transform: uppercase; display: inline-block; }
+.badge-pending { background: #ffeaa7; color: #d63031; }
+.badge-shipping { background: #dbeafe; color: #2563eb; }
+.badge-delivered { background: #d1fae5; color: #059669; }
+
+.detail-container { display: flex; justify-content: center; margin-top: 20px; }
+.detail-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+.detail-title { margin-bottom: 20px; text-align: center; }
+.detail-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+.detail-label { font-weight: bold; color: #666; }
+
+.toast { position: fixed; bottom: 20px; right: 20px; padding: 12px 20px; border-radius: 4px; color: white; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+.toast-success { background: #2ecc71; }
+.toast-error { background: #e74c3c; }
+.toast-close { background: transparent; border: none; color: white; cursor: pointer; font-size: 16px; }
+
+.flex-center { display: flex; justify-content: center; align-items: center; }
+.spinner { width: 30px; height: 30px; border: 3px solid #f3f3f3; border-top: 3px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
+.error-box { background: #ff7675; color: white; padding: 15px; border-radius: 4px; margin: 20px auto; max-width: 500px; text-align: center; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
