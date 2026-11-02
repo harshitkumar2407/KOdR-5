@@ -1,0 +1,11 @@
+// Question: Given a month and year, determine the number of days in that month, including leap-
+// year February.
+const input = require("prompt-sync")
+
+let month = Number(input("month in XX"))
+let year = Number(input("year in XXXX"))
+
+// let days = new Date(year,month,0).getDate()
+
+// console.log(days);
+console.log(month,year);
