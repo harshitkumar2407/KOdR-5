@@ -3,10 +3,19 @@ let map = new Map()
 let sum = 0
 for (let i = 0; i < arr.length; i++) {
     const ele = arr[i];
-    if (map.has(ele)) {
-        map.set(ele,map.get(ele)+1)
-    }else{
-        map.set(ele,1)
-    }
+    map.set(ele, (map.get(ele) || 0) + 1)
 }
-console.log(map);
+console.log(map)
+
+
+for (let i = 0; i < arr.length; i++) {
+    const ele = arr[i];
+    // if (map.has(ele)) {
+    //     map.set(ele,map.get(ele)+1)
+    // }else{
+    //     map.set(ele,1)
+    // }
+    map.set(ele, (map.get(ele) || 0) + 1)
+}
+
+console.log(map)
