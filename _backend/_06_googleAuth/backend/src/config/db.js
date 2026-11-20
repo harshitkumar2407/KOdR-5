@@ -1,0 +1,17 @@
+const { connect } = require("mongoose");
+require("dotenv").config();
+
+
+
+const connectToDb = async ()=>{
+    try {
+        await connect(process.env.MONGO_URI)
+        console.log("✅ Database connected successfully");
+        
+    } catch (error) {
+        console.log("❌ Database connection fails");
+        
+    }
+}
+
+module.exports = connectToDb
