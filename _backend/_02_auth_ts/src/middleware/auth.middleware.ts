@@ -8,6 +8,7 @@ async function requireAuth(
   res: Response,
   next: NextFunction
 ): Promise<void> {
+  
   const token = req.cookies.tala;
 
   if (!token) {

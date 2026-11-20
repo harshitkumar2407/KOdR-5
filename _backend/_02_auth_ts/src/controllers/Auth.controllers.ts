@@ -21,6 +21,7 @@ interface LoginBody {
 
 // Register route
 async function registerUser ( req: Request<{}, {}, RegisterBody>,
+  
                               res: Response): Promise<void>  {
 
     try {
