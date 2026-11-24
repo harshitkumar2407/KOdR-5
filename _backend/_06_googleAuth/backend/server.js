@@ -1,7 +1,7 @@
-const app = require("./src/app");
-const connectToDb = require("./src/config/db");
+const app = require("./src/app")
 
-connectToDb()
+
+
 
 
 
