@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Razorpay Payment Gateway Test - Sheryians / KODR</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 32px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      background: #0284c7;
+      color: #fff;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .price-box {
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .price-box .item {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .price-box .amount {
+      font-size: 20px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    #status-box {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      display: none;
+      word-break: break-all;
+    }
+    .status-success {
+      background: rgba(34, 197, 94, 0.15);
+      border: 1px solid #22c55e;
+      color: #4ade80;
+    }
+    .status-error {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid #ef4444;
+      color: #f87171;
+    }
+  </style>
+
+  <!-- 1. Razorpay Checkout Script & Axios CDN -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <div class="card">
+    <span class="badge">Razorpay Test Mode</span>
+    <h1>Backend Domination Course</h1>
+    <p>Test the full flow: Order Creation &rarr; Razorpay Modal &rarr; Backend Signature Verification.</p>
+
+    <div class="price-box">
+      <span class="item">Course Enrollment Fee</span>
+      <span class="amount">₹50.00</span>
+    </div>
+
+    <button id="rzp-button1" class="btn">Pay ₹50 with Razorpay</button>
+
+    <div id="status-box"></div>
+  </div>
+
+  <script>
+    const payBtn = document.getElementById('rzp-button1');
+    const statusBox = document.getElementById('status-box');
+
+    function showStatus(message, isError = false) {
+      statusBox.style.display = 'block';
+      statusBox.className = isError ? 'status-error' : 'status-success';
+      statusBox.innerHTML = message;
+    }
+
+    payBtn.onclick = async function (e) {
+      e.preventDefault();
+      payBtn.disabled = true;
+      payBtn.innerText = 'Order Ban raha hai...';
+      statusBox.style.display = 'none';
+
+      try {
+        // Step 1: Backend se public key_id lo
+        const keyResponse = await axios.get('/api/payment/get-key');
+        const razorpayKey = keyResponse.data.key;
+
+        // Step 2: Backend ko bolo Razorpay pe order banaye
+        const orderResponse = await axios.post('/api/payment/create-order', {
+          amount: 50 // Amount in Rupees
+        });
+        const order = orderResponse.data;
+
+        payBtn.innerText = 'Opening Checkout...';
+
+        // Step 3: Razorpay Popup Modal Config
+        const options = {
+          key: razorpayKey,
+          amount: order.amount, // in paise
+          currency: order.currency,
+          name: "Sheryians / KODR",
+          description: "Backend Course Fee",
+          image: "https://cdn-icons-png.flaticon.com/512/1006/1006771.png",
+          order_id: order.id,
+          handler: async function (response) {
+            payBtn.innerText = 'Verifying Payment...';
+
+            // Step 4: Payment ho gaya! Backend pe verification ke liye bhejo
+            try {
+              const verifyRes = await axios.post('/api/payment/verify', {
+                razorpayOrderId: response.razorpay_order_id,
+                razorpayPaymentId: response.razorpay_payment_id,
+                signature: response.razorpay_signature
+              });
+
+              showStatus(`
+                <strong>🎉 Payment Verified Successfully!</strong><br/>
+                Payment ID: ${response.razorpay_payment_id}<br/>
+                Order ID: ${response.razorpay_order_id}
+              `, false);
+            } catch (err) {
+              showStatus(`Verification Failed: ${err.response?.data?.message || err.message}`, true);
+            } finally {
+              payBtn.disabled = false;
+              payBtn.innerText = 'Pay ₹50 with Razorpay';
+            }
+          },
+          prefill: {
+            name: "Gaurav Kumar",
+            email: "gaurav.kumar@example.com",
+            contact: "9000090000"
+          },
+          theme: {
+            color: "#2563eb"
+          }
+        };
+
+        const rzp1 = new Razorpay(options);
+
+        rzp1.on('payment.failed', function (response) {
+          payBtn.disabled = false;
+          payBtn.innerText = 'Pay ₹50 with Razorpay';
+          showStatus(`
+            <strong>❌ Payment Failed</strong><br/>
+            Reason: ${response.error.description}<br/>
+            Code: ${response.error.code}
+          `, true);
+        });
+
+        rzp1.open();
+      } catch (error) {
+        payBtn.disabled = false;
+        payBtn.innerText = 'Pay ₹50 with Razorpay';
+        showStatus(`Error: ${error.response?.data?.message || error.message}`, true);
+      }
+    };
+  </script>
+
+</body>
+</html>
