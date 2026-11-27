@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href= "style.css">
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <h2></h2>
+    <button class="reset">Reset</button>
+    <section>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+    </section>
+
+
+    <script>
+        const boxes = document.querySelectorAll(".box");
+        const winOrlose =  document.querySelector("h2")
+
+        let count = 0;
+        const wining = [
+            [0,1,2],
+            [3,4,5],
+            [6,7,8],
+
+            [0,3,6],
+            [1,4,7],
+            [2,5,8],
+
+            [0,4,8],
+            [2,4,6] ];
+
+        let turn = true
+        const testWin =()=>{
+            wining.forEach((winningArr)=>{
+                let v1 = boxes[winningArr[0]].textContent;
+                let v2 = boxes[winningArr[1]].textContent;
+                let v3 = boxes[winningArr[2]].textContent;
+
+                if (v1 && v1== v2 && v2 == v3) {
+                    // alert()
+                    winOrlose.textContent = v1 == "X" ? "X won" :"O won"
+                    // reset()
+                }
+            })
+        }
+
+        const reset = ()=>{
+
+                boxes.forEach((box)=>{
+                box.disabled = false;
+                box.textContent = "";
+            })
+            winOrlose.innerText = "";
+            count= 0;
+            turn = true;
+        }
+
+        boxes.forEach((box) => {
+            box.addEventListener("click",()=>{
+                box.textContent = turn ? "X" : "O" ;
+                turn = !turn
+                box.disabled = true;
+                count++;
+                if(count >=5) {
+                    setTimeout(testWin,1)
+                }
+                if(count >= 9){winOrlose.textContent = "Draw"}
+            });
+        })
+
+        document.querySelector(".reset").addEventListener("click", reset);
+
+
+    </script>
+</body>
+</html>
