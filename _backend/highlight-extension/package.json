@@ -1,0 +1,89 @@
+{
+  "name": "persistent-text-highlighter",
+  "displayName": "Persistent Text Highlighter",
+  "description": "Highlight text in VS Code and keep the highlights for the current workspace.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.highlightText",
+    "onCommand:extension.selectHighlightColor",
+    "onCommand:extension.clearAllHiglightsInCurrentFile",
+    "onCommand:extension.clearHighlightForSelectedRange",
+    "onCommand:extension.clearAllHighlights"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Highlight Extension",
+      "properties": {
+        "highlightExtension.highlightColor": {
+          "type": "string",
+          "default": "rgba(255,255,0,0.2)",
+          "description": "CSS color used for new highlights."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "extension.highlightText",
+        "title": "Highlight: Highlight Selection"
+      },
+      {
+        "command": "extension.selectHighlightColor",
+        "title": "Highlight: Select Highlight Color"
+      },
+      {
+        "command": "extension.clearAllHiglightsInCurrentFile",
+        "title": "Highlight: Clear All Highlights in Current File"
+      },
+      {
+        "command": "extension.clearHighlightForSelectedRange",
+        "title": "Highlight: Clear Highlight for Selected Range"
+      },
+      {
+        "command": "extension.clearAllHighlights",
+        "title": "Highlight: Clear All Highlights in Workspace"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "extension.highlightText",
+        "key": "ctrl+shift+h",
+        "mac": "cmd+shift+h",
+        "when": "editorTextFocus && editorHasSelection"
+      },
+      {
+        "command": "extension.selectHighlightColor",
+        "key": "ctrl+shift+m",
+        "mac": "cmd+shift+m"
+      },
+      {
+        "command": "extension.clearAllHiglightsInCurrentFile",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.clearHighlightForSelectedRange",
+        "key": "ctrl+shift+d",
+        "mac": "cmd+shift+d",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.clearAllHighlights",
+        "key": "ctrl+shift+g",
+        "mac": "cmd+shift+g"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node --check extension.js",
+    "lint": "node --check extension.js"
+  }
+}
